@@ -1,0 +1,27 @@
+{
+	"plugins": ["prettier"],
+	"extends": ["next/core-web-vitals", "prettier"],
+	"rules": {
+		"prettier/prettier": [
+			"error",
+			{
+				"plugins": ["prettier-plugin-tailwindcss"],
+				"printWidth": 160,
+				"useTabs": true,
+				"tabWidth": 4,
+				"trailingComma": "all",
+				"singleQuote": true,
+				"semi": true,
+				"importOrder": [
+					"<THIRD_PARTY_MODULES>",
+					"^@/(.*)$",
+					"^$env/(.*)$",
+					"^[./]"
+				],
+				"endOfLine": "lf",
+				"importOrderSeparation": true,
+				"importOrderSortSpecifiers": true
+			}
+		]
+	}
+}
