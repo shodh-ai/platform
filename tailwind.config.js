@@ -2,7 +2,18 @@
 const config = {
 	content: ['./app/**/*.{js,ts,jsx,tsx,mdx}', './components/**/*.{js,ts,jsx,tsx,mdx}'],
 	theme: {
-		extend: {},
+		// Color names generated at: https://color-name-generator.com
+		colors: {
+			sugarMint: '#C3E3C5',
+			astronaut: '#435173',
+			trafficWhite: '#F1EFEA',
+			white: '#FFFFFF',
+		},
+		extend: {
+			fontFamily: {
+				sans: ['var(--font-plus-jakarta-sans)'],
+			},
+		},
 	},
 	plugins: [],
 };
