@@ -7,6 +7,8 @@ const config = {
 			sugarMint: '#C3E3C5',
 			astronaut: '#435173',
 			trafficWhite: '#F1EFEA',
+			whippedCream: '#F2EFE7',
+			unbleached: '#FBF9F4',
 			white: '#FFFFFF',
 		},
 		extend: {

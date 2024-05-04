@@ -23,6 +23,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.5",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
