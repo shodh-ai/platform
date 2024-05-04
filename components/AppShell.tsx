@@ -11,6 +11,7 @@ const AppShell = ({ children, navbar, header }: { children: ReactNode; navbar?: 
 				<div className="sticky top-3 flex h-16 w-full items-center rounded-xl bg-astronaut px-9 py-2">
 					{header}
 				</div>
+				{/* Fix: Height Calculation not working  */}
 				<div className="h-[calc(100vh - 112px)] mt-9 overflow-scroll">{children}</div>
 			</div>
 		</div>
