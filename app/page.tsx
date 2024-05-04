@@ -6,8 +6,8 @@ export default function Page() {
 			<h1 className="mb-7 text-2xl font-bold text-astronaut">Job Description Details</h1>
 
 			<div className="flex w-full gap-6">
-				<Form columns={2}>
-					<div className="flex w-full flex-col gap-10 rounded-xl bg-whippedCream p-9">
+				<Form>
+					<div className="grid w-full grid-cols-2 gap-6 rounded-xl bg-whippedCream p-9">
 						<Form.Item>
 							<Form.Label>Job Title</Form.Label>
 							<Form.TextInput />
@@ -28,27 +28,27 @@ export default function Page() {
 							<Form.TextInput />
 						</Form.Item>
 
-						<Form.Item colSpan={2}>
+						<Form.Item className="col-span-2">
 							<Form.Label>Company Information</Form.Label>
 							<Form.TextInput />
 						</Form.Item>
 
-						<Form.Item colSpan={2}>
+						<Form.Item className="col-span-2">
 							<Form.Label>Performance Analysis</Form.Label>
 							<Form.TextInput />
 						</Form.Item>
 
-						<Form.Item colSpan={2}>
+						<Form.Item className="col-span-2">
 							<Form.Label>Job Summary</Form.Label>
 							<Form.TextInput />
 						</Form.Item>
 
-						<Form.Item colSpan={2}>
+						<Form.Item className="col-span-2">
 							<Form.Label>Responsibilities</Form.Label>
 							<Form.TextInput />
 						</Form.Item>
 
-						<Form.Item colSpan={2}>
+						<Form.Item className="col-span-2">
 							<Form.Label>Qualifications</Form.Label>
 							<Form.TextInput />
 						</Form.Item>

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 const AppShell = ({ children, navbar, header }: { children: ReactNode; navbar?: ReactNode; header?: ReactNode }) => {
 	return (
-		<div>
+		<>
 			<div className="fixed left-0 top-0 flex h-screen w-64 items-stretch p-3">
 				<div className="flex w-full rounded-xl bg-sugarMint">{navbar}</div>
 			</div>
@@ -14,7 +14,7 @@ const AppShell = ({ children, navbar, header }: { children: ReactNode; navbar?: 
 				{/* Fix: Height Calculation not working  */}
 				<div className="h-[calc(100vh - 112px)] mt-9 overflow-scroll">{children}</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

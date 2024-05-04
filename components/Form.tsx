@@ -9,22 +9,11 @@ interface IFormSubComponents {
 	SubmitButton: typeof SubmitButton;
 }
 
-interface IFormProps {
-	columns: number;
-}
-
-interface IFormItemProps {
-	colSpan?: number;
-}
-
-// Fix: Column span not being set dynamically
-const Item: FC<IFormItemProps & HTMLProps<HTMLDivElement>> = (props) => {
-	const { children, colSpan, className, ...rest } = props;
-
-	const colSpanClassName = `col-span-${colSpan}` ?? null;
+const Item: FC<HTMLProps<HTMLDivElement>> = (props) => {
+	const { children, className, ...rest } = props;
 
 	return (
-		<div className={`w-full ${colSpanClassName} ${className}`} {...rest}>
+		<div className={`w-full ${className}`} {...rest}>
 			{children}
 		</div>
 	);
@@ -64,14 +53,11 @@ const SubmitButton: FC<ComponentProps<'button'>> = (props) => {
 	);
 };
 
-// Fix: Grid columns not being set dynamically
-const Form: FC<IFormProps & HTMLProps<HTMLFormElement>> & IFormSubComponents = (props) => {
-	const { children, columns, ...rest } = props;
-
-	const columnsClassName = `grid-cols-${columns}` ?? null;
+const Form: FC<HTMLProps<HTMLFormElement>> & IFormSubComponents = (props) => {
+	const { children, className, ...rest } = props;
 
 	return (
-		<form className={`grid w-full gap-6 ${columnsClassName}`} {...rest}>
+		<form className={`grid w-full gap-6 ${className}`} {...rest}>
 			{children}
 		</form>
 	);
