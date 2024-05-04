@@ -8,8 +8,10 @@ const AppShell = ({ children, navbar, header }: { children: ReactNode; navbar?: 
 			</div>
 
 			<div className="ml-64 flex flex-col p-3 pl-0">
-				<div className="flex h-16 w-full items-center rounded-xl bg-astronaut px-9 py-2">{header}</div>
-				<div className="mt-9">{children}</div>
+				<div className="sticky top-3 flex h-16 w-full items-center rounded-xl bg-astronaut px-9 py-2">
+					{header}
+				</div>
+				<div className="h-[calc(100vh - 112px)] mt-9 overflow-scroll">{children}</div>
 			</div>
 		</div>
 	);
