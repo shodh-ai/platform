@@ -13,7 +13,7 @@ const Item: FC<HTMLProps<HTMLDivElement>> = (props) => {
 	const { children, className, ...rest } = props;
 
 	return (
-		<div className={`w-full ${className}`} {...rest}>
+		<div className={`w-full ${className ?? ''}`} {...rest}>
 			{children}
 		</div>
 	);
@@ -45,7 +45,7 @@ const SubmitButton: FC<ComponentProps<'button'>> = (props) => {
 	return (
 		<button
 			type="submit"
-			className={`rounded-full bg-sugarMint px-7 py-[15px] font-semibold text-astronaut ${className}`}
+			className={`rounded-full bg-sugarMint px-7 py-[15px] font-semibold text-astronaut ${className ?? ''}`}
 			{...rest}
 		>
 			{children}
@@ -57,7 +57,7 @@ const Form: FC<HTMLProps<HTMLFormElement>> & IFormSubComponents = (props) => {
 	const { children, className, ...rest } = props;
 
 	return (
-		<form className={`grid w-full gap-6 ${className}`} {...rest}>
+		<form className={`grid w-full gap-6 ${className ?? ''}`} {...rest}>
 			{children}
 		</form>
 	);

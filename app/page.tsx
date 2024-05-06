@@ -55,11 +55,11 @@ export default function Page() {
 					</div>
 
 					<Form.Item className="flex justify-center">
-						<Form.SubmitButton className="mx-auto w-1/2">Submit</Form.SubmitButton>
+						<Form.SubmitButton className="mx-auto w-1/2">Next</Form.SubmitButton>
 					</Form.Item>
 				</Form>
 
-				<div className="flex w-1/3 flex-col justify-start gap-3 rounded-xl bg-whippedCream px-6 py-9">
+				<div className="flex h-full w-1/3 flex-col gap-3 rounded-xl bg-whippedCream px-6 py-9">
 					<div className="flex gap-[14px]">
 						<h2 className="text-base font-medium text-astronaut">Upload Job Description</h2>
 					</div>

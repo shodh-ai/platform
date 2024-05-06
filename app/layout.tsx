@@ -1,6 +1,6 @@
 import './global.css';
 
-import { AppShell } from 'components';
+import { AppShell, Navbar } from 'components';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 
 import type { ReactNode } from 'react';
@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 			</head>
 			<body className="bg-unbleached">
-				<AppShell>{children}</AppShell>
+				<AppShell navbar={<Navbar />}>{children}</AppShell>
 			</body>
 		</html>
 	);
