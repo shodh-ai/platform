@@ -11,6 +11,7 @@
     "@types/react": "^18.3.1",
     "autoprefixer": "^10.4.19",
     "bun-types": "latest",
+    "drizzle-kit": "^0.21.1",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.3",
     "eslint-config-prettier": "^9.1.0",
@@ -23,7 +24,10 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@next/env": "^14.2.3",
     "@phosphor-icons/react": "^2.1.5",
+    "@vercel/postgres": "^0.8.0",
+    "drizzle-orm": "^0.30.10",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
