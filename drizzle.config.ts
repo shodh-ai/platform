@@ -3,11 +3,9 @@ import 'drizzle/envConfig';
 import { defineConfig } from 'drizzle-kit';
 
 export default defineConfig({
+	dialect: 'postgresql',
 	schema: './drizzle/schema.ts',
-	// @ts-expect-error
-	driver: 'pg',
 	dbCredentials: {
-		// @ts-expect-error
-		connectionString: process.env.POSTGRES_URL!,
+		url: process.env.POSTGRES_URL!,
 	},
 });
