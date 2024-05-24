@@ -22,7 +22,7 @@ export default function Page() {
 		// TODO: Error Handling
 		const result = await addNewJob(rawFormData);
 
-		redirect(`/job/${result[0].id}`);
+		redirect(`/jobs/${result[0].id}`);
 	};
 
 	return (
