@@ -1,63 +1,93 @@
 import { Form } from 'components';
 import { getJobData as getData } from 'drizzle/db';
-import { cache } from 'react';
 
-const data = {
-	technincalSkills: [
-		'Describe your experience with building and deploying machine learning models in production environments for the projects and difficulties faced during completion?',
-		'Explain the concept of overfitting and how you would mitigate it in a ML project?',
-	],
-	experience: [
-		'Tell us about a time you encountered a challenge while working on a machine learning project. How did you approach the problem and what was the outcome?',
-		' Have you ever collaborated with data scientists on a project? Describe your role and how you ensured effective communication.',
-	],
-	softSkills: [
-		'Tell us about a time you encountered a challenge while working on a machine learning project. How did you approach the problem and what was the outcome?',
-		'Have you ever collaborated with data scientists on a project? Describe your role and how you ensured effective communication.',
-	],
+type Question = {
+	id: number;
+	aspect: string;
+	question: string;
+	description: string;
 };
 
-const getJobData = cache(async (id: number) => {
+const getJobData = async (id: number) => {
 	const result = await getData(id);
 
-	if (result) return result;
-	return null;
-});
+	if (!result) return null;
+
+	try {
+		const response = await fetch('https://shodh-api.vercel.app/shodhjd/', {
+			mode: 'cors',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(result),
+		});
+
+		const { questions } = (await response.json()) as unknown as { questions: Question[] };
+
+		const technicalSkillsQuestions = questions.filter(
+			(question: Question) => question.aspect === 'Technical Skills',
+		);
+		const softSkillsQuestions = questions.filter((question: Question) => question.aspect === 'Soft Skills');
+		const experienceQuestions = questions.filter((question: Question) => question.aspect === 'Experience');
+		const analyticalSkillsQuestions = questions.filter(
+			(question: Question) => question.aspect === 'Analytical Skills',
+		);
+
+		return { technicalSkillsQuestions, softSkillsQuestions, experienceQuestions, analyticalSkillsQuestions };
+	} catch (err) {
+		console.error(err);
+		return null;
+	}
+};
 
 export default async function Page({ params: { id } }: { params: { id: number } }) {
 	const data = await getJobData(id);
 
-	return (
-		data && (
+	if (data)
+		return (
 			<div className="px-3">
 				<h1 className="mb-7 text-2xl font-bold text-astronaut">Suggested Interview Questions</h1>
 
 				<div className="flex w-full gap-6">
 					<Form>
 						<div className="grid w-full gap-6 rounded-xl bg-whippedCream p-9">
-							<Form.Item className="flex flex-col gap-[14px]">
-								<h2 className="text-base font-medium text-astronaut">Technical Skills</h2>
+							{data.technicalSkillsQuestions && (
+								<Form.Item className="flex flex-col gap-[14px]">
+									<h2 className="text-base font-medium text-astronaut">Technical Skills</h2>
 
-								{/* {data.technincalSkills.map((item, i) => (
-									<Form.CheckBox key={i}>{item}</Form.CheckBox>
-								))} */}
-							</Form.Item>
+									{data.technicalSkillsQuestions.map((item, i) => (
+										<Form.CheckBox key={i}>{item.question}</Form.CheckBox>
+									))}
+								</Form.Item>
+							)}
+							{data.analyticalSkillsQuestions && (
+								<Form.Item className="flex flex-col gap-[14px]">
+									<h2 className="text-base font-medium text-astronaut">Analytical Skills</h2>
 
-							<Form.Item className="flex flex-col gap-[14px]">
-								<h2 className="text-base font-medium text-astronaut">Experience</h2>
+									{data.analyticalSkillsQuestions.map((item, i) => (
+										<Form.CheckBox key={i}>{item.question}</Form.CheckBox>
+									))}
+								</Form.Item>
+							)}
+							{data.softSkillsQuestions && (
+								<Form.Item className="flex flex-col gap-[14px]">
+									<h2 className="text-base font-medium text-astronaut">Soft Skills</h2>
 
-								{/* {data.experience.map((item, i) => (
-									<Form.CheckBox key={i}>{item}</Form.CheckBox>
-								))} */}
-							</Form.Item>
+									{data.softSkillsQuestions.map((item, i) => (
+										<Form.CheckBox key={i}>{item.question}</Form.CheckBox>
+									))}
+								</Form.Item>
+							)}
+							{data.experienceQuestions && (
+								<Form.Item className="flex flex-col gap-[14px]">
+									<h2 className="text-base font-medium text-astronaut">Exeprience</h2>
 
-							<Form.Item className="flex flex-col gap-[14px]">
-								<h2 className="text-base font-medium text-astronaut">Soft Skills</h2>
-
-								{/* {data.softSkills.map((item, i) => (
-									<Form.CheckBox key={i}>{item}</Form.CheckBox>
-								))} */}
-							</Form.Item>
+									{data.experienceQuestions.map((item, i) => (
+										<Form.CheckBox key={i}>{item.question}</Form.CheckBox>
+									))}
+								</Form.Item>
+							)}
 						</div>
 
 						<Form.Item className="flex justify-center">
@@ -72,8 +102,7 @@ export default async function Page({ params: { id } }: { params: { id: number } 
 					</div>
 				</div>
 			</div>
-		)
-	);
+		);
 
-	return <>Error Loading Job Data</>;
+	return <div className="px-3">Error Loading Job Data</div>;
 }
