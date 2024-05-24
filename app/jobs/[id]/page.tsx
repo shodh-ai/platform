@@ -106,3 +106,5 @@ export default async function Page({ params: { id } }: { params: { id: number } 
 
 	return <div className="px-3">Error Loading Job Data</div>;
 }
+
+export const maxDuration = 55;
